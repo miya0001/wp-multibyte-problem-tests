@@ -9,14 +9,9 @@ php:
   - 5.5
 
 env:
-  - WP_VERSION=latest WP_MULTISITE=0 WP_DB_CHARSET=utf8 WP_DB_COLLATE=utf8_general_ci
-  - WP_VERSION=latest WP_MULTISITE=0 WP_DB_CHARSET=ujis WP_DB_COLLATE=ujis_japanese_ci
-  - WP_VERSION=4.1 WP_MULTISITE=0 WP_DB_CHARSET=utf8 WP_DB_COLLATE=utf8_general_ci
-  - WP_VERSION=4.1 WP_MULTISITE=0 WP_DB_CHARSET=ujis WP_DB_COLLATE=ujis_japanese_ci
-  - WP_VERSION=4.0 WP_MULTISITE=0 WP_DB_CHARSET=utf8 WP_DB_COLLATE=utf8_general_ci
-  - WP_VERSION=4.0 WP_MULTISITE=0 WP_DB_CHARSET=ujis WP_DB_COLLATE=ujis_japanese_ci
+  - WP_VERSION=latest WP_MULTISITE=0
 
 before_script:
-  - bash bin/install-custom-wp-tests.sh wordpress_test root '' localhost $WP_VERSION $WP_DB_CHARSET $WP_DB_COLLATE
+  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION 
 
 script: phpunit
