@@ -10,6 +10,9 @@ DB_USER=$2
 DB_PASS=$3
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
+WP_DB_CHARSET=${6}
+WP_DB_COLLATE=${7}
+
 
 WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
 WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress/}
@@ -90,7 +93,7 @@ install_db() {
 	fi
 
 	# create database
-	mysqladmin create $DB_NAME --user="$DB_USER" --default-character-set="$WP_DB_CHARSET" --password="$DB_PASS"$EXTRA
+	echo "CREATE DATABASE $DB_NAME DEFAULT CHARACTER SET $WP_DB_CHARSET COLLATE $WP_DB_COLLATE;" | mysql -u $DB_USER --password="$DB_PASS"
 }
 
 install_wp
