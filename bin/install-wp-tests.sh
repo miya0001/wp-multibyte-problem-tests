@@ -93,7 +93,7 @@ install_db() {
 
 	# create database
 	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
-	echo "CREATE DATABASE $DB_NAME DEFAULT CHARACTER SET $WP_DB_CHARSET COLLATE $WP_DB_COLLATE;" | mysql -u $DB_USER --password="$DB_PASS"
+	echo "CREATE DATABASE ${DB_NAME} DEFAULT CHARACTER SET ${WP_DB_CHARSET} COLLATE ${WP_DB_COLLATE};" | mysql -u $DB_USER --password="$DB_PASS"
 }
 
 install_wp
