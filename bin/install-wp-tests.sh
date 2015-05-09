@@ -34,7 +34,7 @@ install_wp() {
 
 	mkdir -p $WP_CORE_DIR
 
-	if [ $WP_VERSION == 'latest' ]; then 
+	if [ $WP_VERSION == 'latest' ]; then
 		local ARCHIVE_NAME='latest'
 	else
 		local ARCHIVE_NAME="wordpress-$WP_VERSION"
@@ -70,6 +70,8 @@ install_test_suite() {
 		sed $ioption "s/yourusernamehere/$DB_USER/" ${WP_TESTS_DIR}/../wp-tests-config.php
 		sed $ioption "s/yourpasswordhere/$DB_PASS/" ${WP_TESTS_DIR}/../wp-tests-config.php
 		sed $ioption "s|localhost|${DB_HOST}|" ${WP_TESTS_DIR}/../wp-tests-config.php
+		sed $ioption "s/define( 'DB_CHARSET', 'utf8' );/define( 'DB_CHARSET', '${WP_DB_CHARSET}' );/" ${WP_TESTS_DIR}/../wp-tests-config.php
+		sed $ioption "s/define( 'DB_COLLATE', '' );/define( 'DB_COLLATE', '${WP_DB_COLLATE}' );/" ${WP_TESTS_DIR}/../wp-tests-config.php
 	fi
 
 }
