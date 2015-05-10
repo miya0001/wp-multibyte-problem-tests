@@ -2,6 +2,12 @@
 
 class SampleTest extends WP_UnitTestCase
 {
+	function setup()
+	{
+		global $wpdb;
+		$this->charset = 'utf8';
+	}
+
 	/**
 	 * @test
 	 */
@@ -13,7 +19,8 @@ class SampleTest extends WP_UnitTestCase
 		);
 
 		// $this->assertSame( $_ENV['WP_DB_CHARSET'], $wpdb->charset );
-		$post_id = $this->factory->post->create( array(
+		$post_id = wp_insert_post( array(
+			'post_status' => 'publish',
 			'post_title' => mb_convert_encoding( 'こんにちは！', $char[ $_SERVER['WP_DB_CHARSET'] ], 'utf8' ),
 			'post_content' => mb_convert_encoding( '世界へようこそ', $char[ $_SERVER['WP_DB_CHARSET'] ], 'utf8' ),
 		) );
